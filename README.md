@@ -1,6 +1,7 @@
 # vue-hacker-news
 
-> A Vue.js project
+> vuejs를 이용한 간단한 해커뉴스 클라이언트입니다.
+> <https://narx.github.io/vue-hacker-news/>
 
 ## Build Setup
 
