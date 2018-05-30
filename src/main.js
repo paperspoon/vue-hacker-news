@@ -4,6 +4,7 @@ import Vue from 'vue';
 import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
 import App from './App';
+import store from './store';
 
 Vue.use(Vuetify);
 
@@ -14,4 +15,8 @@ new Vue({
   el: '#app',
   components: { App },
   template: '<App/>',
+  store,
+  created() {
+    this.$store.dispatch('fetchNews');
+  },
 });

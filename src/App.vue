@@ -4,9 +4,10 @@
       <v-toolbar-title>Hacker News</v-toolbar-title>
     </v-toolbar>
     <v-content fluid fill-height>
+      <h2 v-if="isFetching">Loading...</h2>
       <v-list two-line>
-        <template v-for="(n, i) in news">
-          <news :news-id="n" :key="i"></news>
+        <template v-for="(news, i) in news">
+          <news :news="news" :key="i"></news>
         </template>
       </v-list>  
     </v-content>
@@ -17,23 +18,17 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { mapState } from 'vuex';
 import News from './components/News';
 
 export default {
-  data() {
-    return {
-      news: [],
-    };
-  },
+  computed: mapState({
+    news: state => state.news,
+    isFetching: state => state.isFetching,
+  }),
   name: 'App',
   components: {
     News,
-  },
-  mounted() {
-    axios.get('https://hacker-news.firebaseio.com/v0/beststories.json').then((response) => {
-      this.news = response.data.slice(0, 30);
-    });
   },
 };
 </script>

@@ -18,26 +18,15 @@
 </template>
 
 <script>
-import axios from 'axios';
 import * as moment from 'moment';
 
 moment.locale('ko');
 
 export default {
-  data() {
-    return {
-      news: null,
-    };
-  },
   methods: {
     moment: time => moment().diff(moment.unix(time), 'hours'),
   },
-  props: ['newsId'],
-  mounted() {
-    axios.get(`https://hacker-news.firebaseio.com/v0/item/${this.newsId}.json`).then((response) => {
-      this.news = response.data;
-    });
-  },
+  props: ['news'],
 };
 </script>
 
